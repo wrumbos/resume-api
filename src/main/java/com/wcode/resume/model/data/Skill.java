@@ -1,4 +1,4 @@
-package com.wcode.resume.model;
+package com.wcode.resume.model.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,15 +6,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.sql.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
 @Entity
-@Table(name = "employment")
-public class Employment {
+@Table(name = "skill")
+public class Skill {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,23 +21,13 @@ public class Employment {
 
     @Column(length = 20)
     @NotBlank
-    private String companyName;
-
-    @Column(length = 20)
-    @NotBlank
-    private String jobTitle;
+    private String name;
 
     @NotBlank
-    private Date startDate;
-
-    private Date endDate;
-
-    @Column(length = 100)
-    private String jobDescription;
+    private int selfAppraisal;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "resume_id", nullable = false)
     private Resume resume;
-
 
 }

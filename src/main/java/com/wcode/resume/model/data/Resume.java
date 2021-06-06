@@ -1,4 +1,4 @@
-package com.wcode.resume.model;
+package com.wcode.resume.model.data;
 
 
 import lombok.AllArgsConstructor;

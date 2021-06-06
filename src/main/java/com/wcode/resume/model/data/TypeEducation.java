@@ -1,4 +1,4 @@
-package com.wcode.resume.model;
+package com.wcode.resume.model.data;
 
 public enum TypeEducation {
     EDUCATION_UNIVERSITY,
