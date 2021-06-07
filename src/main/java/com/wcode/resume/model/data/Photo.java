@@ -25,8 +25,8 @@ public class Photo {
     @Lob
     private byte[] data;
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "resume_id")
     private Resume resume;
 
 }

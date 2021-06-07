@@ -1,6 +1,7 @@
 package com.wcode.resume.model.data;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,7 @@ public class Resume {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(length = 40)
     @NotBlank
@@ -37,22 +38,27 @@ public class Resume {
     @NotBlank
     private String aboutMe;
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "photo_id")
+    @JsonIgnore
+    @OneToOne(mappedBy = "resume", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Photo photo;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private Set<Employment> employments;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private Set<Education> educations;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private Set<Skill> skills;
