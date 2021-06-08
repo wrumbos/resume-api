@@ -54,5 +54,15 @@ public class ResumeController {
 
     }
 
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/resume/consolidate/{userName}")
+    @ApiOperation(value = "resume: get consolidate resume by user name")
+    public ResponseEntity consolidate(@PathVariable("userName") String userName) {
+        return resumeService.getConsolidate(userName)
+                .map(resume -> ResponseEntity.ok(resume))
+                .orElseThrow(() -> new ApiRequestException("Ocurrio un error actualizando el resume"));
+
+    }
+
 
 }
