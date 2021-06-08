@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
 @Data
@@ -21,15 +22,15 @@ public class Employment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 20)
-    @NotBlank
+    @Column(length = 50)
+    @NotNull(message = "Please enter companyName")
     private String companyName;
 
-    @Column(length = 20)
-    @NotBlank
+    @Column(length = 50)
+    @NotNull(message = "Please enter jobTitle")
     private String jobTitle;
 
-    @NotBlank
+    @NotNull(message = "Please enter startDate")
     private Date startDate;
 
     private Date endDate;
@@ -42,5 +43,23 @@ public class Employment {
     @JoinColumn(name = "resume_id", nullable = false)
     private Resume resume;
 
+    public Employment(@NotBlank String companyName, @NotBlank String jobTitle, @NotBlank Date startDate,
+                      Date endDate, String jobDescription) {
+        this.companyName = companyName;
+        this.jobTitle = jobTitle;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.jobDescription = jobDescription;
+    }
 
+    @Override
+    public String toString() {
+        return "Employment{" +
+                "companyName='" + companyName + '\'' +
+                ", jobTitle='" + jobTitle + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", jobDescription='" + jobDescription + '\'' +
+                '}';
+    }
 }

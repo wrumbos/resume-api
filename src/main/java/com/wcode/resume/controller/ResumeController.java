@@ -49,9 +49,10 @@ public class ResumeController {
     @ApiOperation(value = "resume: update new Resume")
     public ResponseEntity updateResume(@PathVariable("id") long id, @Valid @RequestBody Resume resume) {
         return resumeService.updateResume(resume, id)
-                .map(user -> ResponseEntity.ok(new ApiResponse(true, user.toString())))
+                .map(resumes -> ResponseEntity.ok(new ApiResponse(true, resumes.toString())))
                 .orElseThrow(() -> new ApiRequestException("Ocurrio un error actualizando el resume"));
 
     }
+
 
 }

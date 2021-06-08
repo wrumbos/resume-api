@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
@@ -20,11 +20,11 @@ public class Skill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 20)
-    @NotBlank
+    @Column(length = 30)
+    @NotNull(message = "Please enter name")
     private String name;
 
-    @NotBlank
+    @NotNull(message = "Please enter selfAppraisal")
     private int selfAppraisal;
 
     @JsonIgnore
@@ -32,4 +32,17 @@ public class Skill {
     @JoinColumn(name = "resume_id", nullable = false)
     private Resume resume;
 
+    public Skill(@NotNull(message = "Please enter name") String name,
+                 @NotNull(message = "Please enter selfAppraisal") int selfAppraisal) {
+        this.name = name;
+        this.selfAppraisal = selfAppraisal;
+    }
+
+    @Override
+    public String toString() {
+        return "Skill{" +
+                "name='" + name + '\'' +
+                ", selfAppraisal=" + selfAppraisal +
+                '}';
+    }
 }

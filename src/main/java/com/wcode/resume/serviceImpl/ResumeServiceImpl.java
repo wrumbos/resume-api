@@ -14,10 +14,12 @@ public class ResumeServiceImpl implements ResumeService {
 
     private UserRepository userRepository;
     private ResumeRepository resumeRepository;
+    private EmploymentServiceImpl employmentService;
 
-    public ResumeServiceImpl(UserRepository userRepository, ResumeRepository resumeRepository) {
+    public ResumeServiceImpl(UserRepository userRepository, ResumeRepository resumeRepository, EmploymentServiceImpl employmentService) {
         this.userRepository = userRepository;
         this.resumeRepository = resumeRepository;
+        this.employmentService = employmentService;
     }
 
     @Override

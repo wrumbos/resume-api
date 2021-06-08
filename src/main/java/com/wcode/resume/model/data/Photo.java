@@ -31,4 +31,17 @@ public class Photo {
     @JoinColumn(name = "resume_id")
     private Resume resume;
 
+    public Photo(String name, String type, byte[] data) {
+        this.name = name;
+        this.type = type;
+        this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return "Photo{" +
+                "name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

@@ -4,7 +4,6 @@ import com.wcode.resume.model.data.Education;
 import com.wcode.resume.model.data.Resume;
 import com.wcode.resume.repository.EducationRepository;
 import com.wcode.resume.repository.ResumeRepository;
-import com.wcode.resume.repository.UserRepository;
 import com.wcode.resume.service.EducationService;
 import org.springframework.stereotype.Service;
 

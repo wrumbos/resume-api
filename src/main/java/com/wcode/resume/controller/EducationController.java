@@ -29,7 +29,7 @@ public class EducationController {
     @ApiOperation(value = "Education: get education")
     public ResponseEntity getEducationById(@PathVariable("id") long id) {
         return educationService.getEducationById(id)
-                .map(resume -> ResponseEntity.ok(resume))
+                .map(education -> ResponseEntity.ok(education))
                 .orElseThrow(() -> new ApiRequestException("Ocurrio un error encontrando estudio"));
 
     }
@@ -39,7 +39,7 @@ public class EducationController {
     @ApiOperation(value = "Education: get education")
     public ResponseEntity getAllEducationByIdUser(@PathVariable("id_user") long id_user) {
         return educationService.getAllEducationByIdUser(id_user)
-                .map(resume -> ResponseEntity.ok(resume))
+                .map(education -> ResponseEntity.ok(education))
                 .orElseThrow(() -> new ApiRequestException("Ocurrio un error encontrando todos estudios"));
 
     }
@@ -49,7 +49,7 @@ public class EducationController {
     @ApiOperation(value = "Education: Creates new education")
     public ResponseEntity registerEducation(@PathVariable("id_user") long id_user, @Valid @RequestBody Education education) {
         return educationService.insertEducation(id_user, education)
-                .map(resumes -> ResponseEntity.ok(new ApiResponse(true, resumes.toString())))
+                .map(educations -> ResponseEntity.ok(new ApiResponse(true, educations.toString())))
                 .orElseThrow(() -> new ApiRequestException("Ocurrio un error creando estudio"));
 
     }
@@ -59,7 +59,7 @@ public class EducationController {
     @ApiOperation(value = "Education: update new Resume")
     public ResponseEntity updateEducation(@PathVariable("id") long id, @Valid @RequestBody Education education) {
         return educationService.updateEducation(id, education)
-                .map(user -> ResponseEntity.ok(new ApiResponse(true, user.toString())))
+                .map(educations -> ResponseEntity.ok(new ApiResponse(true, educations.toString())))
                 .orElseThrow(() -> new ApiRequestException("Ocurrio un error actualizando estudio"));
 
     }
