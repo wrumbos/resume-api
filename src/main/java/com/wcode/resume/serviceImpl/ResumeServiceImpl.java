@@ -43,13 +43,9 @@ public class ResumeServiceImpl implements ResumeService {
             resume1.get().setPhone(resume.getPhone());
             resume1.get().setAboutMe(resume.getAboutMe());
             return Optional.ofNullable(resumeRepository.save(resume1.get()));
-        } else {
-            return Optional.empty();
         }
+        return Optional.empty();
+
     }
 
-    @Override
-    public void delete(Long id) {
-        resumeRepository.deleteById(id);
-    }
 }

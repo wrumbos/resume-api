@@ -1,7 +1,5 @@
 package com.wcode.resume.data;
 
-import com.wcode.resume.model.data.Role;
-import com.wcode.resume.model.data.Roles;
 import com.wcode.resume.model.data.User;
 import com.wcode.resume.repository.RoleRepository;
 import com.wcode.resume.repository.UserRepository;
@@ -14,10 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -36,22 +32,8 @@ public class AuthDataTest {
 
     @BeforeEach
     public void setUp() {
-        Set<Role> roles = new HashSet<>();
-
-        Role userRole = roleRepository.findByName(Roles.ROLE_USER).get();
-        roles.add(userRole);
-
-        userOne = new User(
-                "userOne",
-                "userOne@userOne.com",
-                "userOne",
-                roles);
-
-        userTwo = new User(
-                "userTwo",
-                "userTwo@userTwo.com",
-                "userTwo",
-                roles);
+        userOne = userRepository.findById(Long.valueOf(1)).get();
+        userTwo = userRepository.findById(Long.valueOf(2)).get();
     }
 
     @AfterEach

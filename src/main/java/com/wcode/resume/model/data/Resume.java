@@ -63,4 +63,13 @@ public class Resume {
             cascade = CascadeType.ALL)
     private Set<Skill> skills;
 
+    public Resume(@NotBlank String fullname, @NotBlank String address, @NotBlank String zip,
+                  @NotBlank String phone, @NotBlank String aboutMe, User user) {
+        this.fullname = fullname;
+        this.address = address;
+        this.zip = zip;
+        this.phone = phone;
+        this.aboutMe = aboutMe;
+        this.user = user;
+    }
 }

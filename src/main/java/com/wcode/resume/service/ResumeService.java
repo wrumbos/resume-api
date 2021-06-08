@@ -8,5 +8,4 @@ public interface ResumeService {
     Optional<Resume> getResumeById(Long id);
     Optional<Resume> insertResume(Resume resume, Long id_user);
     Optional<Resume> updateResume(Resume resume, Long id);
-    void delete(Long id);
 }
