@@ -72,4 +72,15 @@ public class Resume {
         this.aboutMe = aboutMe;
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "Resume{" +
+                "fullname='" + fullname + '\'' +
+                ", address='" + address + '\'' +
+                ", zip='" + zip + '\'' +
+                ", phone='" + phone + '\'' +
+                ", aboutMe='" + aboutMe + '\'' +
+                '}';
+    }
 }

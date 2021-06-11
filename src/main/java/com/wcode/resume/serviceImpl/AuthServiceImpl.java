@@ -1,6 +1,7 @@
 package com.wcode.resume.serviceImpl;
 
 import com.wcode.resume.exception.ApiRequestException;
+import com.wcode.resume.model.data.Resume;
 import com.wcode.resume.model.data.Role;
 import com.wcode.resume.model.data.Roles;
 import com.wcode.resume.model.data.User;
@@ -8,6 +9,7 @@ import com.wcode.resume.model.request.LoginRequest;
 import com.wcode.resume.model.request.SignupRequest;
 import com.wcode.resume.model.response.LoginResponse;
 import com.wcode.resume.model.security.UserDetailsImpl;
+import com.wcode.resume.repository.ResumeRepository;
 import com.wcode.resume.repository.RoleRepository;
 import com.wcode.resume.repository.UserRepository;
 import com.wcode.resume.service.AuthService;
@@ -34,16 +36,18 @@ public class AuthServiceImpl implements AuthService {
 
     private UserRepository userRepository;
     private RoleRepository roleRepository;
+    private ResumeRepository resumeRepository;
     private PasswordEncoder encoder;
 
     private AuthenticationManager authenticationManager;
     private JsonWebTokenUtils jsonWebTokenUtils;
 
     public AuthServiceImpl(UserRepository userRepository, RoleRepository roleRepository,
-                           PasswordEncoder encoder, AuthenticationManager authenticationManager,
-                           JsonWebTokenUtils jsonWebTokenUtils) {
+                           ResumeRepository resumeRepository, PasswordEncoder encoder,
+                           AuthenticationManager authenticationManager, JsonWebTokenUtils jsonWebTokenUtils) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.resumeRepository = resumeRepository;
         this.encoder = encoder;
         this.authenticationManager = authenticationManager;
         this.jsonWebTokenUtils = jsonWebTokenUtils;
@@ -70,8 +74,17 @@ public class AuthServiceImpl implements AuthService {
                 encoder.encode(signupRequest.getPassword()),
                 roles);
 
+        Optional<User> user1 = Optional.ofNullable(userRepository.save(user));
 
-        return Optional.ofNullable(userRepository.save(user));
+        if(user1.isPresent()){
+            Resume resume = new Resume(signupRequest.getFullname(), signupRequest.getAddress(), signupRequest.getZip(),
+                    signupRequest.getPhone(), signupRequest.getAboutme(), user1.get());
+            resumeRepository.save(resume);
+            return user1;
+        }
+
+        return Optional.empty();
+
     }
 
     @Override

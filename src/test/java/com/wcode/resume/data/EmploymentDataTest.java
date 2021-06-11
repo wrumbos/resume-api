@@ -1,9 +1,7 @@
 package com.wcode.resume.data;
 
-import com.wcode.resume.model.data.Education;
 import com.wcode.resume.model.data.Employment;
 import com.wcode.resume.model.data.Resume;
-import com.wcode.resume.model.data.TypeEducation;
 import com.wcode.resume.repository.EmploymentRespository;
 import com.wcode.resume.repository.ResumeRepository;
 import org.junit.jupiter.api.AfterEach;

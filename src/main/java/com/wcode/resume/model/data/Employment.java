@@ -43,8 +43,8 @@ public class Employment {
     @JoinColumn(name = "resume_id", nullable = false)
     private Resume resume;
 
-    public Employment(@NotBlank String companyName, @NotBlank String jobTitle, @NotBlank Date startDate,
-                      Date endDate, String jobDescription) {
+    public Employment(@NotBlank String companyName, @NotBlank String jobTitle, Date endDate,
+                      @NotBlank Date startDate, String jobDescription) {
         this.companyName = companyName;
         this.jobTitle = jobTitle;
         this.startDate = startDate;
